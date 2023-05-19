@@ -1,3 +1,13 @@
+def calAtevery(stock,flagDate,n):
+    #计算股票stock的n日均线因子
+    #用于计算 训练集 的函数
+    date = flagDate
+    price = get_price(stock,end_date=flagDate, frequency='daily', fields='close', skip_paused=True, fq='pre', count=n)
+    At = mean(price)
+    Atadjust = At/price.tail(1)
+    return Atadjust
+#返回pandas对象
+
 #计算训练集
 def calATlist(stock,date,n):
     lastDate = date
